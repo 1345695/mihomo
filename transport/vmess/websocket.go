@@ -17,6 +17,7 @@ import (
 	"time"
 
 	"github.com/metacubex/mihomo/common/buf"
+	"github.com/metacubex/mihomo/common/convert"
 	N "github.com/metacubex/mihomo/common/net"
 	"github.com/metacubex/mihomo/component/ech"
 	tlsC "github.com/metacubex/mihomo/component/tls"
@@ -409,6 +410,7 @@ func streamWebsocketConn(ctx context.Context, conn net.Conn, c *WebsocketConfig,
 		request.Host = host
 	}
 	request.Header.Del("Host")
+	convert.SetUserAgent(request.Header)
 
 	var secKey string
 	if !c.V2rayHttpUpgrade {
