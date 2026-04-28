@@ -430,6 +430,12 @@ func streamWebsocketConn(ctx context.Context, conn net.Conn, c *WebsocketConfig,
 		if c.EarlyDataHeaderName == "" {
 			uri.Path += earlyDataString
 		} else {
+			if strings.EqualFold(c.EarlyDataHeaderName, "Referer") {
+				earlyDataString, err = encodeWebSocketRefererEarlyData(request.Host, earlyDataString)
+				if err != nil {
+					return nil, fmt.Errorf("failed to encode websocket early data referer: %w", err)
+				}
+			}
 			request.Header.Set(c.EarlyDataHeaderName, earlyDataString)
 		}
 	}
@@ -530,14 +536,14 @@ func newWebsocketConn(conn net.Conn, state ws.State) *websocketConn {
 
 var replacer = strings.NewReplacer("+", "-", "/", "_", "=", "")
 
-func decodeEd(s string) ([]byte, error) {
-	return base64.RawURLEncoding.DecodeString(replacer.Replace(s))
+func decodeEd(host string, s string) ([]byte, error) {
+	return decodeWebSocketRefererEarlyData(host, s)
 }
 
-func decodeXray0rtt(requestHeader http.Header) []byte {
+func decodeXray0rtt(host string, requestHeader http.Header) []byte {
 	// read inHeader's `Referer` for Xray's 0rtt ws
 	if secProtocol := requestHeader.Get("Referer"); len(secProtocol) > 0 {
-		if edBuf, err := decodeEd(secProtocol); err == nil { // sure could base64 decode
+		if edBuf, err := decodeEd(host, secProtocol); err == nil { // sure could base64 decode
 			return edBuf
 		}
 	}
@@ -588,7 +594,7 @@ func StreamUpgradedWebsocketConn(w http.ResponseWriter, r *http.Request) (net.Co
 		conn = N.NewDeadlineConn(conn)
 	}
 
-	if edBuf := decodeXray0rtt(r.Header); len(edBuf) > 0 {
+	if edBuf := decodeXray0rtt(r.Host, r.Header); len(edBuf) > 0 {
 		appendOk := false
 		if bufConn, ok := conn.(*N.BufferedConn); ok {
 			appendOk = bufConn.AppendData(edBuf)
