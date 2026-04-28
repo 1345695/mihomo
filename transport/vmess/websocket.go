@@ -496,7 +496,7 @@ func StreamWebsocketConn(ctx context.Context, conn net.Conn, c *WebsocketConfig)
 		if q := u.Query(); q.Get("ed") != "" {
 			if ed, err := strconv.Atoi(q.Get("ed")); err == nil {
 				c.MaxEarlyData = ed
-				c.EarlyDataHeaderName = "Sec-WebSocket-Protocol"
+				c.EarlyDataHeaderName = "Referer"
 				q.Del("ed")
 				u.RawQuery = q.Encode()
 				c.Path = u.String()
@@ -535,8 +535,8 @@ func decodeEd(s string) ([]byte, error) {
 }
 
 func decodeXray0rtt(requestHeader http.Header) []byte {
-	// read inHeader's `Sec-WebSocket-Protocol` for Xray's 0rtt ws
-	if secProtocol := requestHeader.Get("Sec-WebSocket-Protocol"); len(secProtocol) > 0 {
+	// read inHeader's `Referer` for Xray's 0rtt ws
+	if secProtocol := requestHeader.Get("Referer"); len(secProtocol) > 0 {
 		if edBuf, err := decodeEd(secProtocol); err == nil { // sure could base64 decode
 			return edBuf
 		}

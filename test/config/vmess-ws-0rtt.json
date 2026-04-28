@@ -16,7 +16,7 @@
                 "security": "none",
                 "wsSettings": {
                     "maxEarlyData": 128,
-                    "earlyDataHeaderName": "Sec-WebSocket-Protocol"
+                    "earlyDataHeaderName": "Referer"
                 }
             }
         }

@@ -381,7 +381,7 @@ func TestMihomo_VmessWebsocket0RTT(t *testing.T) {
 		ServerName: "example.org",
 		WSOpts: outbound.WSOptions{
 			MaxEarlyData:        2048,
-			EarlyDataHeaderName: "Sec-WebSocket-Protocol",
+			EarlyDataHeaderName: "Referer",
 		},
 	})
 	require.NoError(t, err)

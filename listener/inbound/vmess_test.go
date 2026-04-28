@@ -149,7 +149,7 @@ func TestInboundVMess_Ws_ed2(t *testing.T) {
 		WSOpts: outbound.WSOptions{
 			Path:                "/ws",
 			MaxEarlyData:        2048,
-			EarlyDataHeaderName: "Sec-WebSocket-Protocol",
+			EarlyDataHeaderName: "Referer",
 		},
 	}
 	testInboundVMess(t, inboundOptions, outboundOptions)

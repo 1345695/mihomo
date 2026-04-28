@@ -613,7 +613,7 @@ proxies: # socks5
       # headers:
       #   Host: v2ray.com
       # max-early-data: 2048
-      # early-data-header-name: Sec-WebSocket-Protocol
+      # early-data-header-name: Referer
       # v2ray-http-upgrade: false
       # v2ray-http-upgrade-fast-open: false
 

@@ -359,7 +359,7 @@ func ConvertsV2Ray(buf []byte) ([]map[string]any, error) {
 								switch network {
 								case "ws":
 									wsOpts["max-early-data"] = med
-									wsOpts["early-data-header-name"] = "Sec-WebSocket-Protocol"
+									wsOpts["early-data-header-name"] = "Referer"
 								case "httpupgrade":
 									wsOpts["v2ray-http-upgrade-fast-open"] = true
 								}
