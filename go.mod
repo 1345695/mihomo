@@ -21,7 +21,7 @@ require (
 	github.com/metacubex/edwards25519 v1.2.0
 	github.com/metacubex/fswatch v0.1.1
 	github.com/metacubex/gopacket v1.1.20-0.20230608035415-7e2f98a3e759
-	github.com/metacubex/http v0.1.3
+	github.com/metacubex/http v0.1.6
 	github.com/metacubex/kcp-go v0.0.0-20260105040817-550693377604
 	github.com/metacubex/mhurl v0.1.0
 	github.com/metacubex/mlkem v0.1.0
@@ -30,7 +30,7 @@ require (
 	github.com/metacubex/restls-client-go v0.1.7
 	github.com/metacubex/sing v0.5.7
 	github.com/metacubex/sing-mux v0.3.9
-	github.com/metacubex/sing-quic v0.0.0-20260414034501-3ea3410d197a
+	github.com/metacubex/sing-quic v0.0.0-20260511111944-ed400da99ad4
 	github.com/metacubex/sing-shadowsocks v0.2.12
 	github.com/metacubex/sing-shadowsocks2 v0.2.7
 	github.com/metacubex/sing-shadowtls v0.0.0-20250503063515-5d9f966d17a2
