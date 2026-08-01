@@ -595,11 +595,9 @@ func StreamUpgradedWebsocketConn(w http.ResponseWriter, r *http.Request) (net.Co
 	}
 
 	if edBuf := decodeXray0rtt(r.Host, r.Header); len(edBuf) > 0 {
-		appendOk := false
 		if bufConn, ok := conn.(*N.BufferedConn); ok {
-			appendOk = bufConn.AppendData(edBuf)
-		}
-		if !appendOk {
+			bufConn.PrependData(edBuf)
+		} else {
 			conn = N.NewCachedConn(conn, edBuf)
 		}
 
