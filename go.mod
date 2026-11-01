@@ -34,7 +34,7 @@ require (
 	github.com/metacubex/randv2 v0.2.0
 	github.com/metacubex/restls-client-go v0.1.9
 	github.com/metacubex/sevenzip v1.6.4
-	github.com/metacubex/sing v0.5.8
+	github.com/metacubex/sing v0.5.9
 	github.com/metacubex/sing-mux v0.3.12
 	github.com/metacubex/sing-quic v0.0.0-20260904234848-1c242664697a
 	github.com/metacubex/sing-shadowsocks v0.2.13
@@ -45,7 +45,7 @@ require (
 	github.com/metacubex/smux v0.0.0-20260105030934-d0c8756d3141
 	github.com/metacubex/ssh v0.1.0
 	github.com/metacubex/tailscale v0.0.0-20260821153257-ff0ecd818181
-	github.com/metacubex/tfo-go v0.0.0-20260623020846-376a77860b8c
+	github.com/metacubex/tfo-go v0.0.0-20261026151606-08d83ec08c84
 	github.com/metacubex/tls v0.1.9
 	github.com/metacubex/utls v1.8.8
 	github.com/metacubex/wireguard-go v0.0.0-20250820062549-a6cecdd7f57f
